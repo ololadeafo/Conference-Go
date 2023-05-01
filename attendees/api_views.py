@@ -48,6 +48,7 @@ def api_list_attendees(request, conference_id):
     )
 
 
+@require_http_methods(["GET", "DELETE", "PUT"])
 def api_show_attendee(request, pk):
     try:
         attendee = Attendee.objects.get(id=pk)
@@ -82,7 +83,7 @@ def api_show_attendee(request, pk):
             )
 
         Attendee.objects.filter(id=pk).update(**content)
-
+        attendee = Attendee.objects.get(id=id)
         return JsonResponse(
             attendee,
             encoder=AttendeeDetailEncoder,

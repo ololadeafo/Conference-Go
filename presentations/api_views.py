@@ -34,14 +34,6 @@ class PresentationDetailEncoder(ModelEncoder):
         return {"status": o.status.name}
 
 
-@classmethod
-def create(cls, **kwargs):
-    kwargs["status"] = Status.objects.get(name="SUBMITTED")
-    presentation = cls(**kwargs)
-    presentation.save()
-    return presentation
-
-
 @require_http_methods(["GET", "POST"])
 def api_list_presentations(request, conference_id):
     if request.method == "GET":

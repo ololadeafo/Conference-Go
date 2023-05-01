@@ -42,6 +42,3 @@ def get_weather_data(city, state):
         return None
 
     return {"temp": temp, "description": description}
-
-
-
